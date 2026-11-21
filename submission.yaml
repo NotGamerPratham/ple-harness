@@ -12,8 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-name: pi-gemini-flash
-model_api: google-cloud/gemini-3.8-flash
+name: pi-glm
+model_api: google-cloud/glm-5.2
 install: >-
   npm ci --prefix {src} --no-fund --no-audit
   && uv venv --python 3.12 /opt/harness/venv
