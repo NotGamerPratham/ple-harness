@@ -1,0 +1,366 @@
+================================================================================
+THE CFD ME | Tucson, Arizona | AZ PE #48213 | CFDME-2025-041 rev B
+MEMORANDUM — ASTM E119 COMPANION SIMULATION VALIDATION
+================================================================================
+
+1. Executive Summary & Validation Finding
+
+This memorandum provides the definitive validation evaluation for the ASTM E119 companion simulation executed under Project CFDME-2025-041 (Ocotillo WUI Wildfire, Phase 1). This evaluation is prepared in accordance with firm-governing QA standards—specifically CFDME Validation QA Procedure rev 2 (CFDME-QA-VAL-002, aligned with ASME V&V 20-2009) and the Units and Conversions SOP rev 2. It resolves open Item 6 on the peer review checklist for Phase 1 Report rev B and establishes the formal technical narrative required to populate Section 7.
+
+The primary conclusions of this validation evaluation are as follows:
+
+Physical Assembly Identity: The assembly modeled in the companion simulation is geometrically and materially identical to the physical specimen evaluated under Red Butte Fire & Materials Testing Report No. RBFMT-25-0918 (test date 09/24/2025) and certified by Ironwood Fire Protection Engineering under Certification Memorandum IWFPE-CERT-25-0374 (dated 09/29/2025). The numerical mesh represents the 305 mm double-wythe printed concrete cavity wall of record OAS-WUI-01_revC (architectural drawing OAS-WA-305mm-DW Rev A), comprising two 50 mm siliceous-aggregate printed concrete leaves, a 205 mm clear air cavity, and continuous 9-gauge (3.8 mm diameter) galvanized steel truss-type wall ties spaced 600 mm on center vertically with 25 mm embedment into each leaf.
+
+Governing Criterion & Prediction S: Under ASTM E119-24, thermal endurance is governed by the earlier of two unexposed-face criteria: the nine-point average temperature rise (139 °C above initial ambient) or the single-point temperature rise (181 °C above initial ambient). In the companion simulation (starting from initial ambient 21.0 °C), the single-point limit of 202.0 °C is reached at an exact linear crossing time of 130.94 min (rounded to 131 min to the nearest minute; tripped at integer sample 131 min). The average criterion of 160.0 °C is crossed at 176.10 min (rounded to 176 min to the nearest minute; tripped at integer sample 177 min). Because 131 min is earlier than 176 min, the single-point criterion governs. The prediction S = 131 min in the Section 7 draft stub STANDS as verified.
+
+Experimental Data D & Client Amendment Disposition: The certified experimental data value of record is D = 118 min, certified in Red Butte Report RBFMT-25-0918 and Ironwood Certificate IWFPE-CERT-25-0374, governed by thermocouple 6 (TC-6) positioned over a horizontal steel tie course. The amended value of 129 min proposed via informal email on 10/09/2025 by Bianca Rennert (VP Product Marketing, Ocotillo) is REJECTED in full. Under Section 6 of CFDME Validation Procedure rev 2, client-amended numbers cannot be substituted for D without a formally reissued test report from the testing laboratory of record (Red Butte), an accredited calibration certificate, and an explicit statement of laboratory supersession. No such documents exist.
+
+Model Error Rollup & Acceptance Decision: With simulation prediction S = 131 min and certified experimental data D = 118 min, the model comparison error is E = S - D = +13 min (explicit sign retained; unrounded crossing yields +12.94 min). The firm's primary acceptance criterion is |E| <= 10.0% of D, which equals 11.8 min. The validation uncertainty u_val is ±9 min (root-sum-square combination of numerical uncertainty ±4 min, input uncertainty ±6 min, and experimental uncertainty ±5 min; exact RSS is ±8.77 min). Because |E| = 13 min exceeds the 10.0% acceptance criterion of 11.8 min, the companion simulation DOES NOT VALIDATE. Furthermore, because |E| = 13 min exceeds u_val = 9 min, the discrepancy is not within measurement scatter but constitutes a RESOLVED MODEL ERROR.
+
+Largest Prediction Clearing Acceptance: For certified endurance D = 118 min, the upper boundary of the firm acceptance band is D + 0.10·D = 118 min + 11.8 min = 129.8 min (limit as it falls). The largest integer prediction that would have cleared the criterion is 129 min (since S = 130 min yields |E| = 12 min > 11.8 min).
+
+Checklist & Programmatic Disposition: The companion simulation cannot be described as validated in Ocotillo's marketing materials or press deck. Item 6 of the peer review checklist can be closed by populating Section 7 with the formal E ± u_val rollup and documented non-validation finding; however, Reviewer Sign-off (Item 10) and PE Stamp Application remain strictly OPEN pending comprehensive resolution of open items 2, 3, 4, 5, 7, and 9.
+
+Table 1.1: Formal Validation Rollup per CFDME Validation Procedure rev 2 §3–§5 (ASME V&V 20)
+
+2. Assembly Identification, Geometry Conformance, and Certification Scope
+
+A rigorous threshold question for this validation exercise is whether the wall assembly modeled in the E119 companion simulation represents the identical assembly evaluated in the certified third-party physical fire test and certified by the fire-protection engineer of record. Based on a detailed cross-examination of the dimensioned assembly drawing, the physical test report, the certification memorandum, and the simulation mesh record, it is confirmed that the numerical model and the certified physical test evaluate the identical physical wall system.
+
+This determination rests upon the specific dimensional, material, and structural parameters detailed in Table 2.1 below, reconciled across all governing documents of record.
+
+Table 2.1: Geometric and Material Reconciliation Across Project Artifacts
+
+2.1 Geometry Revision Tracking: OAS-WUI-01_revC vs revD
+
+A critical project tracking check concerns the transmittal of OAS-WUI-01_revD by Trevor Buckhalter on Thursday, 10/09/2025 at 16:12:00 -0700. In that transmittal, Ocotillo added a continuous 610 mm hollow parapet above the main wall (bringing total wall height to 3355 mm) with a 50 mm coping cap and a 25 mm drip overhang to satisfy architectural sight lines. Review of the case mesh log (log.snappyHexMesh_20251009.txt) establishes that meshing of the wildfire case commenced on 10/09/2025 at 07:14:22 -0700 (MST) utilizing source geometry file OAS-WUI-01_revC.FCStd (received with the signed SOW on 10/08/2025). The revD geometry was transmitted nine hours AFTER the mesh was generated.
+
+For the purposes of this validation memo, the revC vs revD distinction does not affect the validity of the E119 companion simulation. ASTM E119 laboratory tests are conducted on standard 3.05 m × 3.05 m (10 ft × 10 ft) planar furnace specimens mounted within a standard furnace test frame. Parapets, coping caps, and roof drip details are external building envelope appurtenances that are neither installed in an E119 vertical furnace test nor included in Ironwood's certified assembly geometry. The companion simulation modeled the 305 mm double-wythe cavity wall partition per OAS-WUI-01_revC / OAS-WA-305mm-DW Rev A, which is the exact certified configuration covered by Ironwood Memo IWFPE-CERT-25-0374. revD represents a potential scope change for the external aerodynamics and wildfire plume simulations under SOW §3.1, but has zero bearing on the E119 validation assembly.
+
+3. ASTM E119 Performance: Governing Criterion and Simulation Crossing Times
+
+ASTM E119-24 Section 8 establishes two distinct thermal-transmission performance end-points on the unexposed face of a non-load-bearing wall assembly, each evaluated relative to the initial ambient temperature measured at the start of the test (t = 0 min):
+
+Average Unexposed-Face Temperature Rise: The arithmetic mean of nine thermocouples symmetrically distributed across the unexposed face shall not exhibit a temperature rise exceeding 139 °C (250 °F) above the initial ambient temperature.
+
+Single-Point Unexposed-Face Temperature Rise: The temperature rise recorded at any single thermocouple on the unexposed face shall not exhibit a temperature rise exceeding 181 °C (325 °F) above the initial ambient temperature.
+
+Per ASTM E119 §8 and Section 1 of the External Standards Digest rev 1, the reported fire endurance of the assembly is governed by whichever criterion is reached earlier in time. The reported endurance is not the later of the two, nor is it any mathematical average or interpolation between them.
+
+In the companion simulation (archived in E119_companion_sim_results.csv), the initial ambient temperature at t = 0 min is 21.0 °C, which matches the laboratory ambient of 21.0 °C reported in Red Butte Report RBFMT-25-0918 §3.4. Consequently, the governing temperature thresholds in the simulation are:
+
+Average Rise Threshold: T_avg_threshold = 21.0 °C + 139.0 °C = 160.0 °C.
+
+Single-Point Threshold: T_max_threshold = 21.0 °C + 181.0 °C = 202.0 °C.
+
+3.1 Crossing Times vs Tripping Samples
+
+In compliance with Marguerite Falk's directive and the firm's QA procedure, time end-points are evaluated using continuous linear crossing times rather than discrete sampling intervals that trip the criteria. The discrete time series is logged at 1.0 min intervals in E119_companion_sim_results.csv. Linear interpolation between bounding samples yields the following crossing times:
+
+1. Single-Point Criterion (T_unexposed_max_C reaching 202.0 °C):
+   • At time t = 130 min: T_unexposed_max_C = 200.5 °C (rise = 179.5 °C above ambient).
+   • At time t = 131 min: T_unexposed_max_C = 202.1 °C (rise = 181.1 °C above ambient).
+   • Linear crossing time calculation:
+     t_cross = 130 min + [ (202.0 °C - 200.5 °C) / (202.1 °C - 200.5 °C) ] × (131 min - 130 min)
+     t_cross = 130 min + [ 1.5 °C / 1.6 °C ] × 1.0 min = 130 min + 0.9375 min = 130.9375 min ≈ 130.94 min.
+   • Crossing time to the nearest whole minute: 131 min.
+   • Discrete integer sample that trips the threshold: t = 131 min (T = 202.1 °C >= 202.0 °C).
+
+2. Average Unexposed-Face Criterion (T_unexposed_avg_C reaching 160.0 °C):
+   • At time t = 176 min: T_unexposed_avg_C = 159.9 °C (rise = 138.9 °C above ambient).
+   • At time t = 177 min: T_unexposed_avg_C = 160.9 °C (rise = 139.9 °C above ambient).
+   • Linear crossing time calculation:
+     t_cross = 176 min + [ (160.0 °C - 159.9 °C) / (160.9 °C - 159.9 °C) ] × (177 min - 176 min)
+     t_cross = 176 min + [ 0.1 °C / 1.0 °C ] × 1.0 min = 176 min + 0.1000 min = 176.1000 min ≈ 176.10 min.
+   • Crossing time to the nearest whole minute: 176 min.
+   • Discrete integer sample that trips the threshold: t = 177 min (T = 160.9 °C >= 160.0 °C).
+
+Governing Determination: The single-point unexposed-face rise criterion is reached at 131 min (crossing time 130.94 min), which occurs 45 min before the average-rise criterion is reached at 176 min (crossing time 176.10 min). Therefore, the single-point criterion GOVERNS the companion simulation endurance. The simulation prediction S = 131 min cited in the Phase 1 Report rev B Section 7 stub STANDS as correct.
+
+4. Experimental Value of Record and Disposition on Client-Amended Figures
+
+Under Section 6 of CFDME Validation Procedure rev 2, the certified experimental value D must be extracted strictly from the certified third-party laboratory test report of record. In Red Butte Fire & Materials Testing Report No. RBFMT-25-0918 (dated 09/24/2025), Section 5 records the physical test results as follows:
+
+Average Unexposed-Face Rise (Nine-TC Mean): The nine-thermocouple mean rise reached 139 °C above ambient at 163 min after furnace ignition.
+
+Single-Point Unexposed-Face Rise: The single-point rise reached 181 °C above ambient at 118 min after furnace ignition, occurring at thermocouple 6 (TC-6), which was positioned directly over a continuous 9-gauge galvanized steel truss wall tie.
+
+Per ASTM E119, the single-point criterion governed the physical test endurance because 118 min is earlier than 163 min. Accordingly, Section 5.3 of the Red Butte report and Section 2 of Ironwood Certification Memo IWFPE-CERT-25-0374 record the governing experimental fire endurance as D = 118 min. This is the sole valid physical benchmark for this project.
+
+4.1 Formal Rejection of Client-Amended Figure (Bianca Rennert, 129 min)
+
+On 10/09/2025 at 11:42:00 -0700, Bianca Rennert (VP Product Marketing, Ocotillo) transmitted an email with an attached file (burn_data_original_vs_revised.csv) proposing to revise the single-point endurance of the Red Butte test from 118 min to 129 min. Ms. Rennert asserted that after walking through TC-6's response with their thermocouple vendor, Ocotillo applied a post-test calibration correction that moves single-point endurance to 129 min, aligning closely with the companion simulation's 131 min, and requested approval to claim validation in Friday's product launch materials.
+
+Disposition: Bianca's figure of 129 min is REJECTED IN FULL. It is procedurally inadmissible as experimental data D. Section 6 of CFDME Validation Procedure rev 2 is unambiguous and mandatory on this point:
+
+"D shall be taken from the certified third-party test report of record. Client-amended values may not be substituted for D absent a reissued report from the testing laboratory of record and a calibration certificate authorizing the revision. Post-test amendments transmitted by the client but not authorized by the lab are not admissible as D... The following forms of documentation are required to substitute a revised D:
+1. A reissued report from the testing laboratory of record, bearing the same report number as the original with an amendment sequence (e.g., '-R1'), signed by the laboratory's authorized signatory, and stating the reason for the revision.
+2. A calibration certificate covering the instrument or measurement whose revision is at issue, with a date and calibration-authority reference sufficient to trace the correction.
+3. An explicit statement, in the reissued report, that the revised value supersedes the value in the original report for all downstream use.
+Absent any of the three, the original value stands... Any pressure to depart from this rule — from schedule, from commercial positioning, or from a persuasive account of what 'really' happened at the test — shall be resolved by returning to the reissued-report requirement."
+
+None of the three mandatory criteria have been satisfied. Red Butte has not issued an amended report (RBFMT-25-0918-R1); lab manager Glen Whitfield has signed no revision; no accredited calibration certificate tracing an erroneous TC-6 response has been produced; and all Red Butte calibration certificates (Certificate RBFMT-CAL-25-0812-TC covering TC-1 through TC-10, dated 08/12/2025) were in force and fully NIST-traceable on the test date. Substituting a client's preferred number without accredited laboratory reissuance would corrupt the firm's engineering record and violate professional engineering ethics. The certified value D = 118 min stands.
+
+5. Model Error Formulation, Acceptance Criterion, and Uncertainty Analysis
+
+In accordance with ASME V&V 20-2009 and Section 3 of CFDME Validation Procedure rev 2, validation is evaluated by comparing the model error E against the firm's quantitative acceptance criterion and against the combined validation uncertainty u_val. Validation is never reported as a binary yes/no statement.
+
+5.1 Model Error Computation
+
+The model error E is defined as the signed difference between the simulation prediction S and the certified experimental data D:
+   S = 131 min (companion simulation single-point crossing time, rounded to whole minutes)
+   D = 118 min (certified physical test endurance from Red Butte Report RBFMT-25-0918 §5.2)
+   E = S - D = 131 min - 118 min = +13 min.
+(If evaluated using unrounded crossing times: E = 130.9375 min - 118 min = +12.9375 min ≈ +12.94 min).
+The explicit positive sign (+) is retained in all reporting. A positive error of +13 min denotes that the numerical simulation over-predicts fire endurance by 13 min (+11.0% relative to D), meaning the simulation transmits heat through the wall slower than observed in the physical test.
+
+5.2 Firm Acceptance Criterion
+
+Section 5 of CFDME Validation Procedure rev 2 defines the firm's primary acceptance criterion as a scaled tolerance band:
+   |E| <= 10.0% of D
+For certified endurance D = 118 min, the allowable error bound is:
+   0.10 × 118 min = 11.8 min (limit as it falls).
+This establishes the acceptable simulation prediction interval as:
+   S_acceptable = D ± 10%·D = 118 min ± 11.8 min = [106.2 min, 129.8 min].
+Primary Comparison: |E| = 13 min (or 12.94 min unrounded). Because 13 min > 11.8 min (an error of 11.0% vs the 10.0% threshold), the companion simulation FAILS the firm's primary acceptance criterion.
+
+5.3 Validation Uncertainty Build-Up (u_val)
+
+Section 4 of CFDME Validation Procedure rev 2 mandates that validation uncertainty u_val be synthesized as the root-sum-square (RSS) combination of three independent, mutually exclusive uncertainty components established for conjugate thermal ASTM E119 simulations:
+   1. Numerical uncertainty, u_num = ±4 min (discretization, time-stepping, and iterative convergence across grid studies).
+   2. Input uncertainty, u_inp = ±6 min (propagation of material thermal conductivity, density, specific heat, and cavity radiation/emissivity).
+   3. Experimental uncertainty, u_exp = ±5 min (Type-K thermocouple instrumentation, placement, and furnace acquisition uncertainty).
+Combining by root-sum-square:
+   u_val = sqrt( u_num² + u_inp² + u_exp² ) = sqrt( (4 min)² + (6 min)² + (5 min)² )
+   u_val = sqrt( 16 min² + 36 min² + 25 min² ) = sqrt( 77 min² ) = ±8.77496... min ≈ ±8.77 min.
+Per Section 4, u_val is reported to whole minutes: u_val = ±9 min for this class of problem.
+
+5.4 Secondary Comparison Against u_val and Error Characterization
+
+Section 5 of the Validation Procedure establishes the secondary diagnostic test: comparing |E| against u_val:
+   |E| = 13 min
+   u_val = 9 min (or 8.77 min unrounded)
+Comparison: |E| = 13 min > u_val = 9 min.
+Physical Significance: If |E| were less than or equal to u_val, the discrepancy would sit within the combined noise floor of numerical and experimental uncertainty and would be characterized as measurement scatter. However, because |E| strictly exceeds u_val, the discrepancy is RESOLVED AS A MODEL ERROR. The simulation's +13 min over-prediction is statistically distinct from experimental noise and represents an actionable modeling defect that cannot be explained away by measurement uncertainty.
+
+5.5 Largest Prediction Clearing the Acceptance Criterion
+
+The upper limit of the firm's acceptance band for D = 118 min is:
+   S_max = D + 0.10 × D = 118 min + 11.8 min = 129.8 min (limit as it falls).
+Any simulation prediction S <= 129.8 min satisfies |E| <= 11.8 min. Expressed as an integer to the nearest whole minute, the LARGEST PREDICTION THAT WOULD HAVE CLEARED THE CRITERION is 129 min. (A prediction of 130 min would produce E = +12 min, which exceeds the 11.8 min limit).
+Note on Client Context: It is illuminating that Bianca Rennert's proposed figure of 129 min represents exactly the maximum integer value that would clear the criterion against D = 118 min, or conversely, if D were moved to 129 min, S = 131 min would produce E = +2 min (|E| <= 12.9 min). This underscores why the firm's strict prohibition on unverified client data amendments exists: adopting 129 min would manufacture an artificial validation by manipulating the reference anchor.
+
+6. Key Diagnostic Comparisons and Model Rework Allocation
+
+To diagnose the physical origin of the +13 min model error, two quantitative comparisons required by firm review are examined: (1) the time separation in minutes between the average-rise and single-point criteria in the test versus the run, and (2) the temperature elevation of the governing single point above the nine-point mean at the moment of governance in each.
+
+6.1 Comparison 1: Separation Between Criteria (Average Rise vs Single Point)
+
+In physical testing and numerical simulation of cavity walls with metallic ties, the single-point criterion trips earlier than the average-rise criterion because the ties act as localized thermal bridges. The time separation between the two criteria measures how effectively the model captures the thermal bridging dynamics relative to the bulk concrete leaves:
+
+Physical Test (Red Butte RBFMT-25-0918): Average criterion reached at 163 min; single-point criterion reached at 118 min.
+Separation: Delta_t_test = 163 min - 118 min = 45 min.
+
+Companion Simulation (E119 Run): Average criterion crossed at 176.10 min (176 min); single-point criterion crossed at 130.94 min (131 min).
+Separation: Delta_t_sim = 176 min - 131 min = 45 min (exact crossing difference: 176.10 min - 130.94 min = 45.16 min ≈ 45 min).
+
+Comparison: Delta_t_test = 45 min vs Delta_t_sim = 45 min (difference: 0 min using rounded values; 0.16 min exact). The time lag between localized tie-driven breakthrough and bulk-wall thermal breakthrough is virtually IDENTICAL in the test and the run.
+
+6.2 Comparison 2: Governing Point Elevation Above Nine-Point Mean at Governance
+
+The second comparison measures how far the local hot spot (governing point) sits above the nine-point spatial average on the unexposed face at the exact instant the single-point criterion is reached:
+
+Physical Test (Red Butte RBFMT-25-0918): At governance (t = 118 min), TC-6 recorded a temperature rise of 181 °C above ambient (absolute temperature: 202.0 °C). The nine-thermocouple average rise at that instant stood at approximately 96 °C above ambient (absolute temperature: 117.0 °C) per Section 5.2 of the Red Butte report.
+Elevation above mean: Delta_T_test = 181 °C - 96 °C = 85 °C (or 85 K difference).
+
+Companion Simulation (E119 Run): At governance (t = 131 min), T_unexposed_max_C = 202.1 °C (rise = 181.1 °C above ambient). T_unexposed_avg_C at that instant is 110.9 °C (rise = 89.9 °C above ambient).
+Elevation above mean: Delta_T_sim = 202.1 °C - 110.9 °C = 91.2 °C (or 91.2 K difference).
+(At exact crossing t = 130.94 min: T_max = 202.0 °C, interpolated T_avg = 110.83 °C, giving Delta_T_sim = 91.17 °C ≈ 91.2 °C).
+
+Comparison: Delta_T_test = 85 °C vs Delta_T_sim = 91.2 °C (difference: 6.2 °C, or 6.2 K). The degree of thermal peaking over the tie course in the simulation matches the physical test within 6.2 °C.
+
+Table 6.1: Key Diagnostic Comparisons Between Physical Test and Companion Simulation
+
+6.3 What These Comparisons Reveal About the Model and Where Rework Belongs
+
+These two diagnostic comparisons yield a profound engineering conclusion regarding the CFD model's internal physics:
+1. The local thermal-bridging physics through the steel ties is modeled with excellent physical fidelity. The simulation reproduces the 45 min temporal separation between local tie failure and bulk failure exactly, and captures the local temperature peak within 6.2 °C (91.2 °C vs 85 °C).
+2. Crucially, BOTH performance end-points exhibit the identical over-prediction of +13 min:
+   • Single-point error: 131 min - 118 min = +13 min.
+   • Average-rise error: 176 min - 163 min = +13 min.
+Because both the local hot spot and the nine-point average lag the physical test by the exact same 13 minutes, THE MODEL ERROR IS NOT CAUSED BY TIE MODELING, TIE EMBEDMENT, OR LOCAL TIE MESH REFINEMENT. Rather, the entire assembly is undergoing a uniform, global thermal delay.
+
+Allocation of Rework: Engineering rework belongs strictly in the GLOBAL BULK THERMAL PROPERTIES of the printed concrete leaves and in the FURNACE EXPOSED-FACE HEAT TRANSFER BOUNDARY CONDITIONS:
+• Bulk Concrete Thermal Inertia: The volumetric heat capacity (rho·c_p) and thermal conductivity k(T) of the printed siliceous-aggregate concrete. If the simulation used constant concrete properties (k = 1.4 W/(m·K), rho = 2200 kg/m³, c_p = 900 J/(kg·K) from Modeling Standard rev 4 Appendix A) or an idealized moisture curve, it failed to capture concrete dehydration endotherms (free water vaporization at 100 °C and chemically bound water release at 100–300 °C). In physical concrete, latent heat absorption creates a temperature plateau, after which dry concrete conductivity drops and thermal transmission accelerates. A model with excessive effective thermal inertia delays overall heating by ~13 min.
+• Exposed-Face Boundary Conditions: Radiative and convective heat flux coupling from the furnace gas to the concrete surface. Under-predicting furnace gas emissivity, surface absorptivity, or convective heat transfer coefficients retards heat penetration uniformly across the entire wall.
+• Unexposed-Face Boundary Conditions: Over-predicting convective or radiative heat dissipation to the ambient room on the back face.
+Rework DOES NOT belong in the wall ties, tie conductivity, tie contact resistance, or local tie mesh resolution.
+
+Current Status of Rework: Has any of this rework been started yet? NO. As of today, 10/10/2025, no rework on the E119 companion simulation or its material/boundary definitions has been initiated. No revised case dictionaries, updated thermophysical property tables, or re-run submissions exist on the firm's file server.
+
+7. Programmatic Implications for Phase 1 and Peer Review Disposition
+
+The non-validation finding on the E119 companion simulation carries direct consequences for the Phase 1 deliverable, the peer review workflow, and downstream simulation activities under SOW CFDME-2025-041-SOW-01.
+
+7.1 Impact on Phase 1 Report rev B and Sprint 2 Wildfire Runs
+
+1. Section 7 Validation Narrative: Section 7 of Phase 1 Report rev B cannot be released with an unqualified validation claim. In compliance with Section 5 of CFDME Validation Procedure rev 2, the report must state transparently that the companion simulation exceeded the firm's 10.0% acceptance criterion (E = +13 min vs 11.8 min criterion) and exceeded validation uncertainty (u_val = ±9 min), presenting the full numerical rollup S, D, E, and u_val with units on a dedicated line.
+2. Wildfire Production Runs (Sprint 2): The E119 companion simulation demonstrates that the current wall thermophysical model runs 'cold' (over-predicting endurance by 11.0%). If the six SOW §3.1 production wildfire LES cases are executed using these unadjusted concrete thermal properties, the simulations will systematically under-predict unexposed-face temperatures and tie-embedded temperatures under buffelgrass fire plume impingement. This would produce unconservative safety estimates.
+
+7.2 Case Setup Audit: Root-Cause Deficiencies from Subcontractor Setup
+
+A forensic audit of the project Case folder reveals that the technical integrity of Phase 1 is severely compromised by improper case setup inherited from Mulshi Simulation Labs. In OAS_case_setup_from_DWA.txt, operator Ananya Deshmukh copied the setup directly from CFDME-2024-018 (Dry Wash Aerospace), a validated high-altitude compressible external-aerodynamics case. This introduces several blatant violations of CFDME Modeling Standards — Fire & Buoyant Flows rev 4:
+• Incorrect Solver & Turbulence Treatment: The archive specifies rhoSimpleFoam (steady compressible RANS with k-omega SST) instead of fireFoam (reacting LES).
+• Catastrophic Freestream Conditions: Freestream pressure was set to p_inf = 26,500 Pa and density rho_inf = 0.4 kg/m³ (high-altitude flight conditions!), rather than ground-level atmospheric conditions in Avra Valley (~95,000 Pa, 1.15 kg/m³).
+• Omission of Combustion & Radiation: combustionModel was set to 'none' and radiation was set to 'off'!
+• Complete Absence of Multi-Region CHT: No conjugate heat transfer regions, cavity fluid, or tie regions were defined.
+• Attempted Steady Solves & Ignorance of Plume Puffing: In log.solve_20251009_attempt3.txt, operator S. Bhatia attempted a steady SIMPLE solve with fireFoam. The solver stalled because the monitor probes exhibited periodic oscillations at ~1.15 s (~0.87 Hz). Bhatia erroneously diagnosed this as 'numerical convergence stalling' and recommended loosening tolerances, completely unaware that f = 0.87 Hz is the physical buoyant plume puffing frequency mandated by Modeling Standard rev 4 §4!
+These deficiencies confirm that open items 2, 3, 4, 5, 7, and 9 on the peer review checklist are critical engineering barriers that require full remediation before any Phase 1 deliverable can be stamped.
+
+7.3 Reviewer Checklist Disposition (Marguerite Falk, PE)
+
+Table 7.1 establishes the formal disposition of the ten items on the Phase 1 Report rev B Peer Review Checklist:
+
+Table 7.1: Peer Review Checklist Disposition (CFDME-2025-041 Phase 1 Report rev B)
+
+8. Wildfire Claim Analysis: Scope Limitations, Gap Closure, and Future Reporting Form
+
+A central requirement of Section 7 of CFDME Validation Procedure rev 2 and Section 4 of the External Standards Digest rev 1 is enforcing the strict boundary between standard ASTM E119 furnace ratings and real-world wildland-urban interface (WUI) wildfire performance.
+
+8.1 What This Validation Exercise Does and Does Not Establish
+
+What This Exercise Does Establish:
+• It evaluates the computational model's ability to simulate 1D/2D conjugate heat transfer through a 305 mm double-wythe printed concrete cavity wall under the standardized building time-temperature curve of ASTM E119.
+• It establishes that the model reproduces the 45 min thermal bridging offset caused by metallic ties, but exhibits a global thermal delay of +13 min (+11.0%), failing the firm's 10.0% validation criterion.
+
+What This Exercise DOES NOT Establish:
+• It DOES NOT validate or establish Ocotillo's marketing positioning that 'our 3D-printed concrete envelope significantly outperforms conventional wood-frame construction in a wildland-urban-interface wildfire event.'
+• It does not predict the survival time, structural integrity, spalling resistance, or habitable conditions of an Ocotillo structure during an actual WUI wildfire.
+The physical reasons for this limitation are fundamental:
+1. Radical Regime & Heat Flux Discrepancy: ASTM E119 is an enclosed, slowly rising, uniform compartment furnace fire that reaches ~927 °C at 1 hour and ~1010 °C at 2 hours. A Sonoran buffelgrass WUI wildfire is an open-atmosphere, wind-driven, highly turbulent flaming front. It produces rapid, near-instantaneous convective and radiative heat flux spikes (>100 kW/m²), severe wind-tilted flame impingement, intense ember/firebrand showers, and short flame front residence times (typically 1–5 minutes) followed by smoldering ground fuels. Thermal transmission under a 2-hour uniform furnace soak has no direct physical correspondence to transient wildfire front exposure.
+2. Complete Absence of Wood-Frame Baseline Data: Outperformance is inherently a comparative claim. Neither Red Butte Report RBFMT-25-0918 nor the companion CFD simulation evaluated, tested, or modeled a conventional wood-frame assembly (e.g., 2×6 wood studs with gypsum board, fiberglass batt insulation, OSB sheathing, and exterior stucco/cladding). In the absence of a verified, direct baseline under identical boundary conditions, any claim of outperformance is scientifically unproven.
+
+8.2 What Would Be Required to Close the Validation Gap
+
+To scientifically close the gap and substantiate a wildfire performance or comparative outperformance claim, Ocotillo and The CFD ME would require:
+1. Wildfire-Representative Physical Testing: Execution of large-scale physical testing of the 305 mm printed concrete wall under realistic wildland fire exposures (e.g., radiant panel testing per ASTM E2707, burn-table experiments, or wildfire flame generators delivering the 10,040 kW/m Byram fireline intensity characterized in the Phase 1 scoping memo). This testing must log time-resolved heat fluxes, surface temperatures, cavity temperatures, and unexposed-face responses (such as the Red Butte confirmatory testing window tentatively scheduled for 10/27/2025).
+2. Direct Baseline Physical Testing or Validated Modeling: Subjecting an identical-footprint conventional wood-frame wall assembly to the exact same physical fire exposure and numerical simulation protocol.
+3. Verification of Firebrand Vulnerability: Evaluating penetrations, coping joints, eaves, and weep holes against ember intrusion, which is the primary ignition mechanism in WUI wildfire disasters.
+
+8.3 Mandatory Reporting Form for Any Future Comparison
+
+Under Section 3 and Section 7 of CFDME Validation Procedure rev 2 and ASME V&V 20-2009, any future comparative or validation claim CANNOT be reported as a binary yes/no, pass/fail, or qualitative assertion (e.g., 'the model is validated for wildfire' or 'concrete outperforms wood'). Any future deliverable must express validation strictly in the four-part ASME V&V 20 numerical formulation:
+   S [prediction], D [certified lab data], E = S - D [signed comparison error], and u_val [validation uncertainty],
+presented together on a single line with explicit units, accompanied by quantitative comparison against the firm's 10.0% acceptance criterion and secondary comparison against the combined validation uncertainty u_val.
+
+9. Legal & Regulatory Rating Authority, Substantiation Impact, and Stamp Reservation
+
+9.1 What Bianca's Figure (129 min) Would Do to the Certified Rating if Substantiated
+
+In Ironwood Certification Memorandum IWFPE-CERT-25-0374 Section 3, Marla Kettering, PE explained the exact regulatory basis of the assembly's current 1-hour fire-resistance rating:
+"The measured endurance of 118 min exceeds the 60-minute rung by a healthy margin. The next higher standard rung is a 2-hour rating, which requires 120 min of demonstrated endurance under the governing criterion; the measured endurance falls short of that rung by 2 min. Because the certified rating is limited by the governing single-point result to the highest standard rung fully demonstrated by the certified test, the assembly is certified at 1-hour and not at any higher rung."
+
+If Red Butte Fire & Materials Testing were to officially reissue report RBFMT-25-0918 with single-point endurance substantiated at 129 min:
+• Single-point endurance (129 min) would exceed the 120-minute (2-hour) standard rating threshold by 9 min.
+• Average-rise endurance (163 min) already exceeds the 120-minute threshold by 43 min.
+• Because BOTH thermal-transmission criteria would exceed 120 minutes, the assembly would fully qualify for an upgraded 2-HOUR FIRE-RESISTANCE RATING (120 min) under ASTM E119.
+
+9.2 Who Is Legally Entitled to Act on a Rating Amendment
+
+Section 4 of the Ironwood Certification Memorandum and Section 9 of CFDME Validation Procedure rev 2 explicitly restrict rating authority:
+• SOLE AUTHORITY: Marla Kettering, PE (Arizona Fire Protection Professional Engineer #45106), Principal of Ironwood Fire Protection Engineering, retains exclusive legal and professional authority to issue, modify, amend, or recertify the fire-resistance rating of the assembly.
+• ABSOLUTE EXCLUSIONS: Neither The CFD Mechanical Engineer, LLC (including Gordon Selby, PE and Marguerite Falk, PE), nor Ocotillo Additive Structures (including Trevor Buckhalter and Bianca Rennert) is legally or professionally entitled to certify, alter, or announce an amended fire-resistance rating. Rating certification requires an official, reissued, signed test report from Red Butte Fire & Materials Testing (Glen Whitfield), submitted directly to Ironwood for formal engineering re-certification.
+
+9.3 Mandatory PE Stamp Boundary Language
+
+Under firm policy and Arizona engineering practice, the CFD analyst stamps numerical thermal flow modeling only. The firm's mandatory stamp block reservation, which must appear verbatim on every deliverable, reads:
+"CFD thermal analysis only. Fire-resistance rating certified separately by others."
+
+10. Proposed Client Communication (Draft Text for Bianca Rennert)
+
+The following concise, unambiguous paragraph is provided for Marguerite Falk (or Gordon Selby) to transmit to Bianca Rennert at Ocotillo Additive Structures today, Friday 10/10/2025, in direct response to her inquiry regarding launch materials:
+
+11. Appendix: Complete Section 7 Text for Phase 1 Report rev B
+
+The following complete, unhedged text is drafted to replace the placeholder stub in Section 7 of CFDME-2025-041_Phase1_report_revB.docx, fulfilling all requirements of CFDME Validation Procedure rev 2:
+
+MEMORANDUM SIGN-OFF & STAMP BLOCK
+
+Originating Engineer:
+Gordon Selby, PE — Owner & Principal Engineer, The CFD ME
+Arizona Professional Engineer #48213
+Date: 10/10/2025
+
+Mandatory Stamp Block Reservation:
+"CFD thermal analysis only. Fire-resistance rating certified separately by others."
+
+Concurrence & Reviewer Disposition:
+Marguerite Falk, PE — Technical Director & Reviewing Engineer, The CFD ME
+Arizona Professional Engineer #42798
+Checklist Item 6 Status: CLOSED (Validation memo accepted; Section 7 populated)
+Checklist Items 2, 3, 4, 5, 7, 9, 10 Status: OPEN (Held pending engineering remediation)
+Date: 10/10/2025
+
+
+================================================================================
+TABLES AND INSERTS FROM MEMORANDUM
+================================================================================
+
+
+--- TABLE / INSERT 1 ---
+TO: | Marguerite Falk, PE — Technical Director & Reviewing Engineer (AZ PE #42798)
+FROM: | Gordon Selby, PE — Owner & Principal Engineer (AZ PE #48213)
+DATE: | 10/10/2025
+PROJECT: | CFDME-2025-041 — Ocotillo WUI Wildfire, Phase 1
+SUBJECT: | ASTM E119 Companion Simulation Validation Evaluation (Phase 1 Report rev B, Section 7)
+GOVERNING STANDARDS: | CFDME Validation QA Procedure rev 2 (CFDME-QA-VAL-002); ASME V&V 20-2009 (R2016); ASTM E119-24; CFDME Units & Conversions SOP rev 2
+
+
+--- TABLE / INSERT 2 ---
+Prediction S (Run) | Certified Data D (Test) | Comparison Error E | Acceptance Limit (10% D) | Uncertainty u_val | Validation Status
+131 min (crossing: 130.94 min) | 118 min (TC-6, RBFMT-25-0918) | +13 min (+11.0% of D) | 11.8 min (band: 106.2–129.8 min) | ±9 min (exact RSS: ±8.77 min) | DOES NOT VALIDATE (|E| > 10% D and |E| > u_val)
+
+
+--- TABLE / INSERT 3 ---
+Assembly Parameter | Dimensioned Drawing (OAS-WA-305mm-DW Rev A) | Red Butte Test Specimen (RBFMT-25-0918) | Ironwood Certified Geometry (IWFPE-CERT-25-0374) | Companion Run Geometry (OAS-WUI-01_revC)
+Specimen Dimensions | 3.05 m × 3.05 m (10 ft × 10 ft) partition | 3.05 m × 3.05 m (10 ft × 10 ft) partition | 3.05 m × 3.05 m (10 ft × 10 ft) partition | 3.05 m × 3.05 m specimen sub-domain
+Loading State | Non-load-bearing partition | Non-load-bearing, clamped perimeter | Non-load-bearing configuration only | Non-load-bearing (thermal only)
+Outer Concrete Leaf | 50 mm printed concrete (exterior face) | 50 mm wet-on-wet 3D printed concrete | 50 mm printed concrete leaf | 50 mm solid region (dx_face resolved)
+Air Cavity Width | 205 mm clear, unfilled open air | 205 mm open air, no fill or membrane | 205 mm open air (no fill / fire-stop) | 205 mm participating fluid region
+Inner Concrete Leaf | 50 mm printed concrete (interior face) | 50 mm wet-on-wet 3D printed concrete | 50 mm printed concrete leaf | 50 mm solid region (interior face)
+Overall Thickness | 305 mm (50 mm / 205 mm / 50 mm) | 305 mm (50 mm + 205 mm + 50 mm) | 305 mm (50 mm / 205 mm / 50 mm) | 305 mm overall thickness
+Concrete Aggregate | Siliceous aggregate mix | Siliceous aggregate mix | Siliceous aggregate mix | Siliceous concrete properties (§3.5)
+Tie Material & Type | 9-gauge (3.8 mm) galv. steel, truss zigzag | 9-gauge (3.8 mm) galv. steel, continuous truss | 9-gauge (3.8 mm) galv. steel, continuous truss | 9-gauge (3.8 mm) steel solid regions
+Tie Vertical Spacing | 600 mm on center (o.c.) vertically | 600 mm on center (o.c.) vertically | 600 mm on center (o.c.) vertically | 600 mm on center (o.c.) vertically
+Tie Embedment Depth | 25 mm into each leaf (50 mm total) | 25 mm embedment into each leaf | 25 mm embedment into each leaf | 25 mm conjugate solid embedment
+
+
+--- TABLE / INSERT 4 ---
+Diagnostic Metric | Physical Test (Red Butte) | Companion Simulation (Run) | Discrepancy (Sim - Test)
+Separation Between Criteria (Avg Rise - Single Point) | 45 min (163 min - 118 min) | 45 min (176 min - 131 min) [exact: 45.16 min] | 0 min [exact: +0.16 min]
+Single-Point Governing Endurance | 118 min (at TC-6) | 131 min [crossing: 130.94 min] | +13 min (+11.0%) [exact: +12.94 min]
+Average Unexposed-Face Endurance | 163 min (nine-TC mean) | 176 min [crossing: 176.10 min] | +13 min (+8.0%) [exact: +13.10 min]
+Governing Point Elevation Above Mean at Governance | 85 °C (85 K) [181 °C rise vs 96 °C rise] | 91.2 °C (91.2 K) [181.1 °C rise vs 89.9 °C rise] | +6.2 °C (+6.2 K)
+
+
+--- TABLE / INSERT 5 ---
+Item # | Checklist Description | Current Status | Action / Disposition Following This Memo
+1 | Deliverable identifies governing SOW & revision | [X] CLOSED | Closed previously. Cites SOW dated 10/08/2025, §3.1 and §3.2.
+2 | Regime selection documented against modeling standard | [ ] OPEN | STAYS OPEN. Fr = 0.92–2.21 calculated in scoping memo but not integrated into case-setup record. Requires documentation before sign-off.
+3 | Solver package confirmed per Modeling Standard rev 4 §3 | [ ] OPEN | STAYS OPEN. Must purge rhoSimpleFoam / steady DWA references and verify fireFoam LES with EDC and fvDOM across all case dictionaries.
+4 | Resolution basis: D*/dx & Pope TKE in Verification body | [ ] OPEN | STAYS OPEN. D*/dx = 7.5 and Pope TKE = 84% must be moved from Appendix C into report body Section 6. GCI must not be used for LES.
+5 | Through-wall CFD treatment confirmed per standard §6 | [ ] OPEN | STAYS OPEN. Multi-region conjugate heat transfer (CHT) with separate tie regions must be formally documented in case-setup record.
+6 | Validation reported as E ± u_val, NOT yes/no, per procedure | [X] CLOSED | CLOSED BY THIS MEMO. Section 7 drafted per Validation Procedure rev 2 with S = 131 min, D = 118 min, E = +13 min, u_val = ±9 min, criterion = 11.8 min, and documented non-validation finding.
+7 | Geometry revision tagged and matches case log | [ ] OPEN | STAYS OPEN. Mesh log confirms OAS-WUI-01_revC meshed 10/09/2025 morning; client transmittal revD (parapet) post-dates mesh build. Discrepancy must be reconciled.
+8 | Stamp boundary respected (thermal only; rating by others) | [X] CLOSED | Closed previously. Section 9.2 stamp block carries standard mandatory reservation. Cites Ironwood Memo IWFPE-CERT-25-0374.
+9 | All reported pressures cross-checked per Units SOP rev 2 | [ ] OPEN | STAYS OPEN. Structural wind interim summary (12.4 Pa) cross-checked against wrong DWA boundary conditions. Dedicated units conversion section required.
+10 | Reviewer sign-off and stamp block completed | [ ] OPEN | STAYS OPEN. Held open pending satisfactory engineering closure of Items 2, 3, 4, 5, 7, and 9.
+
+
+--- TABLE / INSERT 6 ---
+Draft Transmittal to Bianca Rennert (VP Product Marketing, Ocotillo Additive Structures):  "Bianca — We cannot authorize describing the companion simulation as 'validated against the certified test' in your product launch materials this Friday, nor can The CFD ME support a 2-hour rating claim. Under our governing engineering QA procedure (CFDME-QA-VAL-002 / ASME V&V 20), numerical validation must be measured strictly against the certified third-party laboratory test report of record (Red Butte Report RBFMT-25-0918, D = 118 min). Post-test internal thermocouple calibration adjustments cannot be adopted without a formally reissued, signed test report from Red Butte and an accompanying accredited calibration certificate. Against the certified 118-minute benchmark, our companion simulation predicts 131 minutes to the governing single-point criterion, yielding an error of E = +13 minutes (+11.0%). This exceeds our firm's 10.0% validation acceptance criterion (11.8 minutes) as well as our validation uncertainty floor (±9 minutes), qualifying as a resolved model error that precludes an unqualified validation claim. Furthermore, Ironwood's official certification memo of record (IWFPE-CERT-25-0374, issued by Marla Kettering, PE) certifies the assembly at a 1-hour fire-resistance rating; only Ironwood is legally empowered to amend that rating if Red Butte ever formally reissues the test data. Finally, ASTM E119 is a standardized comparative furnace test and does not validate real-world wildfire survivability or comparative claims against wood-frame construction. We must resolve these technical differences through proper engineering channels before any public claims are made."
+
+
+--- TABLE / INSERT 7 ---
+SECTION 7 — VALIDATION (REPLACEMENT TEXT FOR REPORT REV B)  7.1 Validation Basis & Test of Record Model validation is performed in accordance with CFDME Validation QA Procedure rev 2 (CFDME-QA-VAL-002) and ASME V&V 20-2009. The physical benchmark of record is the ASTM E119 vertical fire-endurance test conducted by Red Butte Fire & Materials Testing on 09/24/2025 (Report No. RBFMT-25-0918), which evaluated a 3.05 m × 3.05 m non-load-bearing specimen of the Ocotillo double-wythe printed concrete cavity wall (geometry OAS-WUI-01_revC / OAS-WA-305mm-DW Rev A: two 50 mm siliceous printed concrete leaves, 205 mm clear air cavity, and continuous 9-gauge / 3.8 mm galvanized steel truss ties at 600 mm o.c. with 25 mm embedment). The certified fire-resistance rating of record is 1-hour (60 min), issued by Ironwood Fire Protection Engineering (Memo IWFPE-CERT-25-0374, dated 09/29/2025, Marla Kettering, PE, AZ PE #45106).  7.2 ASTM E119 Performance & Companion Simulation Results ASTM E119 evaluates two thermal-transmission criteria on the unexposed face relative to initial ambient (21.0 °C): (1) average rise of nine thermocouples <= 139 °C (threshold: 160.0 °C), and (2) single-point rise <= 181 °C (threshold: 202.0 °C). The earlier criterion governs. In the certified physical test, single-point rise governed at thermocouple 6 (TC-6, over a steel tie course) at elapsed time D = 118 min (average rise was reached at 163 min). Client-transmitted post-test calibrations (asserting 129 min) are inadmissible under Validation Procedure rev 2 §6 absent a reissued laboratory report from Red Butte. Certified D = 118 min governs. The companion numerical simulation (E119_companion_sim_results.csv) reached the single-point threshold of 202.0 °C at a linear crossing time of 130.94 min (rounded to S = 131 min to the nearest minute; discrete tripping sample: 131 min), and reached the average-rise threshold of 160.0 °C at crossing time 176.10 min (176 min; discrete tripping sample: 177 min). The single-point criterion governs, confirming S = 131 min.  7.3 ASME V&V 20 Validation Rollup & Decision Per Validation Procedure rev 2 §3–§5, validation is expressed on a dedicated line as E ± u_val against the firm's 10.0% acceptance criterion:     S = 131 min  |  D = 118 min  |  E = +13 min (+11.0% of D)  |  u_val = ±9 min  |  Acceptance Criterion: |E| <= 11.8 min (10% of D)  Comparison & Acceptance Decision: The model comparison error |E| = 13 min exceeds the primary acceptance criterion of 11.8 min. Furthermore, |E| = 13 min exceeds the combined validation uncertainty u_val = ±9 min (synthesized from numerical uncertainty ±4 min, input uncertainty ±6 min, and experimental uncertainty ±5 min; exact RSS: ±8.77 min). Consequently, the companion simulation DOES NOT VALIDATE against the certified ASTM E119 test, and the discrepancy is classified as a resolved model error.  7.4 Diagnostic Findings & Scope Limitations Diagnostic analysis reveals that the time separation between the two criteria in the test (163 min - 118 min = 45 min) matches the separation in the run (176 min - 131 min = 45 min) identically, and the governing point sits 85 °C above the mean in the test versus 91.2 °C in the run (a 6.2 °C delta). Because both criteria lag the test by exactly +13 min, the metallic tie thermal bridge is modeled accurately; the error stems from a global thermal delay in bulk concrete thermal inertia (rho·c_p, dehydration endotherms) and furnace heat flux coupling. No rework has been initiated as of 10/10/2025. Per Validation Procedure rev 2 §7, validation under ASTM E119 establishes model behavior under a comparative furnace curve only and does NOT validate performance under a transient, wind-driven wildland-urban interface (WUI) buffelgrass wildfire, nor does it establish outperformance relative to wood-frame construction. Wildfire performance claims remain unvalidated pending physical WUI testing and comparative modeling.
+
