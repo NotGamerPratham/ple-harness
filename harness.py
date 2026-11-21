@@ -61,7 +61,7 @@ SETTINGS = {
     "defaultProjectTrust": "never",
     "quietStartup": True,
     "cacheWarming": "streaming",
-    "retry": {"maxRetries": 8, "baseDelayMs": 2000, "maxAgentDelayMs": 60000},
+    "retry": {"maxRetries": 20, "baseDelayMs": 5000, "maxAgentDelayMs": 120000},
     "httpIdleTimeoutMs": 3_600_000,
 }
 # Request features the Google Cloud route for Claude refuses. pi leaves them
