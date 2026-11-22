@@ -6,33 +6,33 @@ Running populate hook for: nextcloud_browser...
 Running populate hook for: nextcloud_mcp...
 Running populate hook for: openproject...
 Running populate hook for: openproject_mcp...
+No snapshot export required: .xlsx/.csv state lives in /filesystem, captured by the platform filesystem subsystem
 Running populate hook for: powerpoint_v2...
-Running populate hook for: wiki_js...
-Running populate hook for: word_v2...
 Projects path: /.apps_data/freecad_mcp/projects
 No snapshot needed - projects are stored directly in STATE_LOCATION
 Project files:
-No snapshot export required: .xlsx/.csv state lives in /filesystem, captured by the platform filesystem subsystem
-No snapshot needed
-No snapshot step required for MCP server
+Running populate hook for: wiki_js...
+Running populate hook for: word_v2...
 No snapshot export required: .pptx state lives in /filesystem, captured by the platform filesystem subsystem
-No snapshot export required: .docx state lives in /filesystem, captured by the platform filesystem subsystem
+No snapshot step required for MCP server
 === Snapshotting Nextcloud data ===
-Populate hook completed: calendar_v2 (exit=0)
 Populate hook completed: excel_v2 (exit=0)
-Populate hook completed: nextcloud_mcp (exit=0)
+No snapshot export required: .docx state lives in /filesystem, captured by the platform filesystem subsystem
+No snapshot needed
 Populate hook completed: powerpoint_v2 (exit=0)
-Populate hook completed: openproject_mcp (exit=0)
-Populate hook completed: word_v2 (exit=0)
+Populate hook completed: freecad_mcp (exit=0)
+Populate hook completed: calendar_v2 (exit=0)
+Populate hook completed: nextcloud_mcp (exit=0)
 === Snapshotting OpenProject ===
   Target: /.apps_data/openproject
+Populate hook completed: openproject_mcp (exit=0)
+Populate hook completed: word_v2 (exit=0)
 Running as user: root
 Export location: /.apps_data/nextcloud_browser
+Exporting PostgreSQL database...
 === Snapshotting Wiki.js ===
   Target: /.apps_data/wiki_js
 Exporting PostgreSQL database...
-Exporting PostgreSQL database...
-Populate hook completed: freecad_mcp (exit=0)
 Exporting database...
 Database exported (2.6M)
 Exporting Wiki.js data...
@@ -42,8 +42,9 @@ Data exported (12K)
 Contents of /.apps_data/wiki_js:
 total 2.6M
 drwxrwxrwx 4 openproject root 4.0K Nov 20 12:00 data
--rw-rw-r-- 1 root        root 2.6M Nov 21 07:40 wiki_dump.sql
+-rw-rw-r-- 1 root        root 2.6M Nov 22 16:03 wiki_dump.sql
 Populate hook completed: wiki_js (exit=0)
+Populate hook completed: mysql (exit=0)
   saved: /.apps_data/nextcloud_browser/database_dump.sql (2.1M)
 Exporting SQLite database...
 Database exported (1.8M)
@@ -52,9 +53,8 @@ No uploaded files to export
 === Snapshot Complete ===
 Contents of /.apps_data/openproject:
 total 1.8M
--rw-r--r-- 1 root root 1.8M Nov 21 07:40 openproject_dump.sql
+-rw-r--r-- 1 root root 1.8M Nov 22 16:03 openproject_dump.sql
 Populate hook completed: openproject (exit=0)
-Populate hook completed: mysql (exit=0)
 SQLite database exported to /.apps_data/nextcloud_browser/nextcloud.db
 SQLite database exported to /.apps_data/nextcloud_browser/nextcloud.db
 Exporting admin files...
@@ -62,9 +62,9 @@ Exporting admin files...
 Exporting owner files...
 === Snapshot complete ===
 total 3.8M
--rw-rw-r--  1 root     root     2.1M Nov 21 07:40 database_dump.sql
-drwxr-x---  3 www-data www-data 4.0K Nov 21 06:54 files
--rw-r--r--  1 root     root     1.7M Nov 21 07:40 nextcloud.db
-drwxr-xr-x 36 root     root     4.0K Nov 21 07:40 user_files
+-rw-rw-r--  1 root     root     2.1M Nov 22 16:03 database_dump.sql
+drwxr-x---  3 www-data www-data 4.0K Nov 22 15:51 files
+-rw-r--r--  1 root     root     1.7M Nov 22 16:03 nextcloud.db
+drwxr-xr-x 36 root     root     4.0K Nov 22 16:03 user_files
 Populate hook completed: nextcloud_browser (exit=0)
-db_diff: 91 added, 184 deleted, 89 modified, chars=186101 max_chars=899484 format=full
+db_diff: 164 added, 358 deleted, 116 modified, chars=263305 max_chars=899484 format=full

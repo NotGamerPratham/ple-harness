@@ -1,1 +1,1 @@
-(pi stopped without a final message)
+The deliverable is complete and verified on disk at `/filesystem/final_batch4__electrical_task17_ec_0205_d100__blind/output/submission.zip`, containing all five required files (`takeoff.csv`, `locations.csv`, `bom.csv`, `register.csv`, `basis.md`) with correct schemas. Counts derived from E-001 legend glyph template matching across the device plans (ADD-02 applied to E-201); basket total $5,100.45; all internal consistency checks pass; limitations honestly documented in basis.md. No further changes needed.

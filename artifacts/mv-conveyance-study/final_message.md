@@ -1,29 +1,11 @@
-The **13.8 kV Site Distribution Conveyance Study** for Solicitation FA4610-26-R-0031 at Pacific Crest Space Force Annex has been completed and packaged in `/filesystem/final_batch4__electrical_task12_conveyance_study__blind/output/submission.zip`.
+The deliverable is complete and fully verified on disk at the exact required path.
 
-### Summary of What Was Delivered
+## Summary
 
-1. **Submission Package (`output/submission.zip`)**:
-   - `conveyance_study.xlsx`: Fully compliant engineering and estimating workbook utilizing exact template sheets, header rows, and live spreadsheet formulas (`SUM`, `INDEX`, `MATCH`, `ROUND`).
-   - `conveyance_study_report.md`: Detailed engineering study report presenting technical justifications, route descriptions, obstacle avoidance, cable pulling calculations, criteria evaluations, and comprehensive cost and labor breakdown tables for every alternative.
+**Deliverable:** `/filesystem/final_batch4__electrical_task12_conveyance_study__blind/output/submission.zip` (73,686 bytes, valid zip) containing:
+- `conveyance_study.xlsx` — all 11 template sheets (Items 7, Segments 21, Structures 24, Pulls 37, Alternatives 34, Takeoff 1017, LaborRates 9, EquipmentRates 10, Markups 9, Register 27, Findings 5)
+- `conveyance_study_report.md` — full study report
 
-2. **Evaluated Items & Recommendations Summary**:
-   - **Item C01 (SS-1 F1 to MB-1 MSG-A)**: Recommended **CEDB** (two parallel sets of 500 kcmil Al in a 2x2 5" EB-20 ductbank, 856.7 LF, $259,579.03, $303.00/LF). Sized for 640 A design current (Settings Schedule Rev D) at 100% load factor and 16.5 kA fault duty. Traverses south to avoid Tree T-201 (20 ft TPZ) and crosses Mission Drive via 50 LF Jack-and-Bore (JB).
-   - **Item C02 (SS-1 F2 to MB-1 MSG-B)**: Recommended **CEDB** (two parallel sets of 500 kcmil Al in a 2x2 5" EB-20 ductbank, 1,112.4 LF, $320,672.48, $288.27/LF). Provides redundant feed from Bus B maintaining >20 ft separation from Bus A (IEDS 4.4). Crosses Mission Drive via JB.
-   - **Item C03 (SS-1 F3 to CUP-1 SWG-C1)**: Recommended **CEDB** (one set of 350 kcmil Al in a 2x1 5" EB-20 ductbank, 518.3 LF, $150,432.22, $290.24/LF). Sized for 400 A design current at 75% load factor; routes west of Parking Lot P-1 and clear of Tree T-202 to avoid pavement cutting and duct reinforcement.
-   - **Item C04 (CUP-1 CF-2 to Lift Station LS-2)**: Recommended **CEDB** (one set of 250 kcmil Al in a 2x1 5" EB-20 ductbank, 1,324.2 LF, $294,204.09, $222.18/LF). Crosses CUP-1 service yard with reinforced encasement, crosses Mission Drive via JB, and crosses Channel DC-1 via 140 LF Directional Bore (HDD with 120" cover and deep bore surcharge). Includes dewatering and OSHA Type C protective sloping east of channel (boring B-10).
-   - **Item C05 (Inside MB-1: MSG-A to USS-A1)**: Recommended **RMC** (one set of 500 kcmil Al in 5" RGS conduit, 400.0 LF, $94,379.13, $235.95/LF). EMT excluded per UFGS 26 20 00 3.1.6.7 (>600 V); ladder tray excluded per UFC 3-520-01 Table 3-1; enclosed tray excluded due to 14" available headroom in COR-1D (IEDS 5.1 / A-501). Pull box PB-01 installed at corridor turn satisfies the 270° bend rule.
-   - **Item C06 (SS-1 F4 to Gate House GH-1)**: Recommended **OH** (one set of 1/0 ACSR Raven on Class 3 wood poles, 2,010.0 LF, $122,467.92, $60.93/LF). Feeder runs outside the industrial area boundary (y=300) along Perimeter Road setback, where overhead lines are permitted (PCSFA-IEDS 4.1) and yield massive cost savings over underground ductbanks. Includes underground risers (250 kcmil Al) at SS-1 and GH-1, two 50 ft poles spanning Mission Drive, and dead-end guys on riser poles.
-   - **Item C07 (CUP-1 CF-1 to Warehouse W-3)**: Recommended **CEDB** (one set of 250 kcmil Al in a 2x1 5" EB-20 ductbank, 680.0 LF, $172,925.71, $254.30/LF). Crosses active rail spur RR-SPUR-2 via 40 LF Jack-and-Bore maintaining 50" depth below top of rail (IEDS 4.5); runs within W-3 dock crane operating area where overhead lines are prohibited.
+**Recommendations:** C01/C02/C03/C04/C07 → CEDB (concrete-encased ductbank, required for primary distribution per IEDS 4.2); C05 → RMC (250 kcmil × 2 sets, tray/EMT not viable); C06 → OH (overhead pole line, permitted and far cheaper for the 40 A gate-house load).
 
-3. **Workbook Details (`conveyance_study.xlsx`)**:
-   - `Items`: Summary of all 7 circuits with recommended conveyance, conductor sizing, design current, ampacity at governing condition, route length, total project cost, and unit cost per LF.
-   - `Segments`: Detailed route vertices, depths, duct matrices, spares, reinforcement, soil classifications, protective systems, and dewatering flags.
-   - `Structures`: Site coordinates and structural configurations for manholes (MH), poles, riser poles, and pull boxes.
-   - `Pulls`: Rigorous cable pulling tension calculations, sidewall bearing pressures (SWBP <= 600 lb/ft), jam ratios (avoiding 2.8–3.2 jamming range), and conduit fill percentages (< 40%).
-   - `Alternatives`: Complete pricing for all 34 alternatives (7 items x 5 types for site items, 4 types for indoor item C05) with live Excel formulas for Direct Cost through Cost/LF.
-   - `Takeoff`: 311 fully priced itemized lines covering labor man-hours, craft labor dollars, equipment dollars, materials with PPI adjustment and sales tax, and subcontract quotes.
-   - `LaborRates`: Formula-driven loaded labor rates (`=ROUND(D*(1+F)+E, 2)`) for 9 craft positions based on Davis-Bacon WD CA20260022 Mod 5 and statutory payroll burden.
-   - `EquipmentRates`: Hourly ownership and operating rates for owned equipment (EP 1110-1-8 Region VII adjusted for fuel/FOG) and bare rental rates (RQ-26-0419).
-   - `Markups`: Explicit parameters including JOOH (9.5%), HOOH (4.5%), Weighted Guidelines Profit (7.97%), effective Class B Surety Bond rate (1.245%), Midpoint Escalation Factor (1.01939), Contingency (5.0%), SIOH (5.7%), ACF (1.00), and Wage Determination.
-   - `Register`: 20 requirements traced to specific clauses across PCSFA-IEDS Rev 3, UFC, UFGS, and OSHA criteria.
-   - `Findings`: 7 documented discrepancies in Government-furnished documents (effective wage determination modification, invalid ACF on bottom-up estimates, Feeder F1 design current mismatch, boring log soil reclassification at B-7/B-10, SUE water main measured depth vs record depth, tree T-201 DBH/TPZ radius, and cable SWBP limit from approved submittal).
+**All verification checks pass:** Takeoff↔Alternatives consistent; exactly one `recommended=Y` per item; Alternatives direct→total→$/lf and LaborRates loaded-rate are live formulas referencing Markups; every cable pull within approved submittal limits (tension ≤ 0.006×2×cmil ≤ 10 k, sidewall ≤ 600 lb/ft, jam outside 2.8–3.2, fill ≤ 40 %).
