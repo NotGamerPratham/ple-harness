@@ -92,8 +92,9 @@ CONTINUE = (
     " files exist and open correctly, then improve them. Reply with a short"
     " summary only after the deliverables are on disk."
 )
-MAX_ROUNDS = 12
+MAX_ROUNDS = 8
 MAX_IDLE = 3
+MAX_QUIET = 2
 MIN_LEFT_SEC = 600
 
 
@@ -229,6 +230,7 @@ class Run:
   def __init__(self, session: taskbridge.Session, model: str):
     self.session, self.model, self.replies = session, model, 0
     self.tools = 0
+    self.writes = 0
 
   async def on_event(self, event: dict[str, Any]) -> None:
     """Processes a parsed JSON event from Pi, updating final message and usage.
@@ -266,6 +268,8 @@ class Run:
       )
     elif kind == "tool_execution_start":
       self.tools += 1
+      if event.get('toolName') in ('write', 'edit'):
+        self.writes += 1
       await self.session.log(
           f"pi: {event.get('toolName')} {json.dumps(event.get('args'))[:300]}"
       )
@@ -349,9 +353,10 @@ async def solve(session: taskbridge.Session) -> str:
           note(session),
       ]
       run = Run(session, model)
-      message, rounds, idle = session.instruction, 0, 0
+      message, rounds, idle, quiet = session.instruction, 0, 0, 0
       while True:
         tools_before, replies_before = run.tools, run.replies
+        writes_before = run.writes
         done = await taskbridge.run_process(
             argv + (["--continue"] if rounds else []),
             session,
@@ -366,6 +371,9 @@ async def solve(session: taskbridge.Session) -> str:
         if rounds >= MAX_ROUNDS:
           break
         if run.replies == replies_before:
+          break
+        quiet = 0 if run.writes > writes_before else quiet + 1
+        if run.writes and quiet >= MAX_QUIET:
           break
         idle = idle + 1 if run.tools == tools_before else 0
         if idle >= MAX_IDLE:
