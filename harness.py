@@ -77,11 +77,13 @@ UNKNOWN_MODEL = {"input": ["text"], "contextWindow": 128000, "maxTokens": 16384}
 NOTE = (
     "You are working on an engineering task. Your tools act on the task's Linux"
     " container, whose working directory is {workdir}; it has no internet"
-    " access. Read the whole instruction and the files it points to, put every"
-    " deliverable exactly where and in the format the instruction asks, and"
-    " check what you wrote. Deliverables must exist as files in the container;"
-    " a chat reply alone is not graded. When you are done, reply with a short"
-    " summary of what you delivered and where."
+    " access. Read the whole instruction and the files it points to. "
+    "
+
+CRITICAL INSTRUCTION: You MUST save all final deliverables (reports, spreadsheets, code, CAD files, etc.) inside a directory named `files/` in the current working directory. "
+    "If you do not write files to the `files/` directory, the grading system will give you a score of 0. Do not just return your answer as text. "
+    "
+When you are done, reply with a short summary of what you delivered and where."
 )
 TIME_NOTE = (
     " You have about {minutes} minutes in all; leave time to finish the"

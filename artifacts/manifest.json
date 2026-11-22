@@ -1,24 +1,24 @@
 {
   "format": 1,
   "dev_set": "85ad6d96fbf76ee64d9fb6339b3bf342b07128a2ebadc0a10f008c95dac01a48",
-  "created": "2026-11-21T11:16:37Z",
+  "created": "2026-11-21T17:57:28Z",
   "harness": {
-    "name": "pi-gemini-flash",
-    "model_api": "google-cloud/gemini-3.8-flash",
-    "tree": "6ccd2b87d42d7b9efdf38418f3985ace777faa1b7d7ef0310a80e88075075339",
+    "name": "pi-glm",
+    "model_api": "google-cloud/glm-5.2",
+    "tree": "9ac621ce4a131724a0d3750baa8029b7b80adba3255595e7afe733f3af42eb2f",
     "files": {
       ".gitignore": "100644 e8b2b095b1dd3217a34ac297eb10cef3df71e833",
       "README.md": "100644 3cda0f5f39d28a1c5623a416bdf98cf3e49464de",
-      "harness.py": "100644 b8d817f439ba4252761918fe5843b6d25e92c408",
+      "harness.py": "100644 318cfe6aa7239d650313790f703613f10a62c08e",
       "package-lock.json": "100644 5dba6d2880e4966fca650af70db1c7345d14d20b",
       "package.json": "100644 701346d5e2e0f3fe4eee265d535319c0b8f634c5",
       "requirements.txt": "100644 7bc03d775075fc452cc88d8aa6292087dd8eec65",
       "serve.py": "100644 a0b209c2c38dc8204a48d1eb9e48b123f646707f",
-      "submission.yaml": "100644 13e7c0bafb3b6afc9c98b00eadaafccb0c38967d",
+      "submission.yaml": "100644 04a501ac3c0fe8e16ca694748d88f2984cc6b2f8",
       "task-tools.ts": "100644 f0f8e7043d3d4c56e8c473b6af0686145706811b",
       "taskbridge.py": "100644 26cc3d6cf8dbcaed859731ce9a6881f4ca8bfe40"
     },
-    "commit": "808665f46122849041dc3ca609189d2a7a8464f0",
+    "commit": "7dc2c1a9eff64e684a5d83d9106a0045776e4251",
     "dirty": false
   },
   "tasks": {
@@ -139,20 +139,6 @@
         "filesystem/test.docx": "6722e29c0ab1d095f82c403159476d8ed5ca9fe6"
       },
       "final_message": "bf573bbb4d89c5fdaadeba9923713cec0724e52f",
-      "deleted": [],
-      "skipped": []
-    },
-    "cooling-water-flush-plan": {
-      "dev_set": "85ad6d96fbf76ee64d9fb6339b3bf342b07128a2ebadc0a10f008c95dac01a48",
-      "run": "pi-gemini-flash-20261121-030751",
-      "trial": "cooling-water-flush-plan__eEhgSoB",
-      "ended": "ok",
-      "reward": 0.233333,
-      "tree": null,
-      "files": {
-        "filesystem/final_batch4__mechanical_task5_pcw_flush_mop__blind/output/submission.zip": "221a499d4fdf9fa0819c4ac598e1c8cfc7292760"
-      },
-      "final_message": "23a9f1fc2d81737d5672b2a862c9eab85b1d3862",
       "deleted": [],
       "skipped": []
     },
@@ -934,38 +920,50 @@
       "skipped": []
     },
     "data-hall-device-takeoff": {
+      "dev_set": "85ad6d96fbf76ee64d9fb6339b3bf342b07128a2ebadc0a10f008c95dac01a48",
       "run": "pi-gemini-flash-20261121-110509",
       "trial": "data-hall-device-takeoff__K6LTDr9",
       "ended": "ok",
       "reward": 0.0,
       "tree": "6ccd2b87d42d7b9efdf38418f3985ace777faa1b7d7ef0310a80e88075075339",
-      "dev_set": "85ad6d96fbf76ee64d9fb6339b3bf342b07128a2ebadc0a10f008c95dac01a48",
       "files": {},
       "final_message": "0caf518a848a254482f166a082fd5066143c1718",
       "deleted": [],
       "skipped": []
     },
     "data-hall-mep-routing": {
+      "dev_set": "85ad6d96fbf76ee64d9fb6339b3bf342b07128a2ebadc0a10f008c95dac01a48",
       "run": "pi-gemini-flash-20261121-110509",
       "trial": "data-hall-mep-routing__E9BfuvC",
       "ended": "ok",
       "reward": 0.0,
       "tree": "6ccd2b87d42d7b9efdf38418f3985ace777faa1b7d7ef0310a80e88075075339",
-      "dev_set": "85ad6d96fbf76ee64d9fb6339b3bf342b07128a2ebadc0a10f008c95dac01a48",
       "files": {},
       "final_message": "0caf518a848a254482f166a082fd5066143c1718",
       "deleted": [],
       "skipped": []
     },
     "lv-cable-sizing": {
+      "dev_set": "85ad6d96fbf76ee64d9fb6339b3bf342b07128a2ebadc0a10f008c95dac01a48",
       "run": "pi-gemini-flash-20261121-110509",
       "trial": "lv-cable-sizing__KwfvQ4Z",
       "ended": "ok",
       "reward": 0.0,
       "tree": "6ccd2b87d42d7b9efdf38418f3985ace777faa1b7d7ef0310a80e88075075339",
-      "dev_set": "85ad6d96fbf76ee64d9fb6339b3bf342b07128a2ebadc0a10f008c95dac01a48",
       "files": {},
       "final_message": "0caf518a848a254482f166a082fd5066143c1718",
+      "deleted": [],
+      "skipped": []
+    },
+    "cooling-water-flush-plan": {
+      "run": "pi-glm-20261121-174507",
+      "trial": "cooling-water-flush-plan__bxiTzWV",
+      "ended": "ok",
+      "reward": 0.0,
+      "tree": "9ac621ce4a131724a0d3750baa8029b7b80adba3255595e7afe733f3af42eb2f",
+      "dev_set": "85ad6d96fbf76ee64d9fb6339b3bf342b07128a2ebadc0a10f008c95dac01a48",
+      "files": {},
+      "final_message": "93315ea983ba645e1fcb67cf1611efaac4cda653",
       "deleted": [],
       "skipped": []
     }
