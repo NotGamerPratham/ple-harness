@@ -83,6 +83,33 @@ NOTE = (
     " a chat reply alone is not graded. When you are done, reply with a short"
     " summary of what you delivered and where."
 )
+CONTINUE = (
+    "Your turn ended without finishing. Do not reply with text alone: every"
+    " reply must contain a tool call until the work is complete. Stop"
+    " researching now. Using what you have already found, write a first"
+    " complete version of every deliverable named in the original"
+    " instruction, at the exact path the instruction gives. Then verify the"
+    " files exist and open correctly, then improve them. Reply with a short"
+    " summary only after the deliverables are on disk."
+)
+MAX_ROUNDS = 12
+MAX_IDLE = 3
+MIN_LEFT_SEC = 600
+
+
+def seconds_left(session) -> float | None:
+  """Best-effort remaining task time; None when the session does not say."""
+  for name in ("time_left",):
+    v = getattr(session, name, None)
+    try:
+      v = v() if callable(v) else v
+    except Exception:
+      continue
+    if isinstance(v, (int, float)):
+      return float(v)
+  return None
+
+
 TIME_NOTE = (
     " You have about {minutes} minutes in all; leave time to finish the"
     " deliverables."
@@ -201,6 +228,7 @@ class Run:
 
   def __init__(self, session: taskbridge.Session, model: str):
     self.session, self.model, self.replies = session, model, 0
+    self.tools = 0
 
   async def on_event(self, event: dict[str, Any]) -> None:
     """Processes a parsed JSON event from Pi, updating final message and usage.
@@ -218,6 +246,10 @@ class Run:
       )
       if text.strip():
         self.session.final_message = text.strip()
+      await self.session.log(
+          f"pi: reply stop={message.get('stopReason')}"
+          f" text={text.strip()[:160]!r}"
+      )
       if message.get("stopReason") == "error":
         await self.session.log(
             f"pi: model error: {message.get('errorMessage')}"
@@ -233,6 +265,7 @@ class Run:
           cache_read_tokens=u.get("cacheRead", 0),
       )
     elif kind == "tool_execution_start":
+      self.tools += 1
       await self.session.log(
           f"pi: {event.get('toolName')} {json.dumps(event.get('args'))[:300]}"
       )
@@ -298,7 +331,8 @@ async def solve(session: taskbridge.Session) -> str:
           "--print",
           "--mode",
           "json",
-          "--no-session",
+          "--session-dir",
+          str(pathlib.Path(scratch) / "sessions"),
           "-nc",
           "-ns",
           "-np",
@@ -315,16 +349,32 @@ async def solve(session: taskbridge.Session) -> str:
           note(session),
       ]
       run = Run(session, model)
-      done = await taskbridge.run_process(
-          argv,
-          session,
-          env=env,
-          cwd=str(work),
-          on_line=run.on_line,
-          stdin=session.instruction.encode(),
-          stop_before_sec=STOP_BEFORE_SEC,
-          log_prefix="pi: ",
-      )
+      message, rounds, idle = session.instruction, 0, 0
+      while True:
+        tools_before, replies_before = run.tools, run.replies
+        done = await taskbridge.run_process(
+            argv + (["--continue"] if rounds else []),
+            session,
+            env=env,
+            cwd=str(work),
+            on_line=run.on_line,
+            stdin=message.encode(),
+            stop_before_sec=STOP_BEFORE_SEC,
+            log_prefix="pi: ",
+        )
+        rounds += 1
+        if rounds >= MAX_ROUNDS:
+          break
+        if run.replies == replies_before:
+          break
+        idle = idle + 1 if run.tools == tools_before else 0
+        if idle >= MAX_IDLE:
+          break
+        left = seconds_left(session)
+        if left is not None and left < MIN_LEFT_SEC:
+          break
+        await session.log(f"harness: pi ended its turn; continuing (round {rounds + 1})")
+        message = CONTINUE
   if not run.replies:
     raise RuntimeError(
         f"pi exited with {done.code} before the model answered:"
